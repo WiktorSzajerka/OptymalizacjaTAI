@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ASCII"?><project>
+    	
+    <version>1.0</version>
+    	
+    <configs>
+        		
+        <config default="true" name="Konfiguracja5" category="opl">
+            			
+            <ref name="model.mod" type="model">
+			</ref>
+            			
+            <ref name="values_5.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja10" category="opl">
+            			
+            <ref name="model.mod" type="model">
+			</ref>
+            			
+            <ref name="values_10.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja15" category="opl">
+            			
+            <ref name="model.mod" type="model">
+			</ref>
+            			
+            <ref name="values_15.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja20" category="opl">
+            			
+            <ref name="model.mod" type="model">
+			</ref>
+            			
+            <ref name="values_20.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja25" category="opl">
+            			
+            <ref name="model.mod" type="model">
+			</ref>
+            			
+            <ref name="values_25.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Kongfiguracja30" category="opl">
+            			
+            <ref name="model.mod" type="model">
+			</ref>
+            			
+            <ref name="values_30.dat" type="data">
+			</ref>
+            		
+        </config>
+        		
+        <config default="false" name="Konfiguracja35" category="opl">
+            			
+            <ref name="model.mod" type="model">
+			</ref>
+            			
+            <ref name="values_35.dat" type="data">
+			</ref>
+            		
+        </config>
+        	
+    </configs>
+    	
+
+</project>
