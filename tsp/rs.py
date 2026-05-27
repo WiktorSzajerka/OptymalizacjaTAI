@@ -30,33 +30,44 @@ def next_solution(solution):    # generowanie kolejnego rozwiązania z pośród 
 
 
 
-n_cities = 10
-dist_values = generator(n_cities)
-print("dane wejściowe", dist_values)
+def random_search(n_cities):
+    dist_values = generator(n_cities)
+    #print("dane wejściowe", dist_values)
 
-# generowanie pierwszego rozwiązania
-solution = []
-for i in range(n_cities):
-    solution.append(i)
+    # generowanie pierwszego rozwiązania
+    solution = []
+    for i in range(n_cities):
+        solution.append(i)
 
-np.random.shuffle(solution)
+    np.random.shuffle(solution)
 
-# random search
-cnt = 0
-best_value = objective_fun(dist_values, solution)
-while cnt <= len(solution)*2:
-    new_solution = next_solution(solution)
-    new_value = objective_fun(dist_values, solution)
-    if new_value < best_value:
-        solution = new_solution
-        best_value = new_value
-        cnt = 0
-    else:
-        cnt += 1
+    # random search
+    cnt = 0
+    i = 0
+    best_value = objective_fun(dist_values, solution)
+    while cnt <= len(solution)*2:
+        i += 1
+        new_solution = next_solution(solution)
+        new_value = objective_fun(dist_values, solution)
+        if new_value < best_value:
+            solution = new_solution
+            best_value = new_value
+            cnt = 0
+        else:
+            cnt += 1
+
+    return solution, best_value, i
+
+
+
+# analiza pojedynczego uruchomienia
+"""
+solution, best_value, iter = random_search(50)
+
 
 print("rozwiązanie ", solution)
 print("długość ścieżki: ", best_value)
-    
+"""
 
 
 

@@ -34,7 +34,7 @@ def next_solution(solution):    # generowanie kolejnego rozwiązania z pośród 
     new_sol[i], new_sol[j] = new_sol[j], new_sol[i]
     return new_sol
 
-def accept_solution(cur_value, new_value):
+def accept_solution(cur_value, new_value, T):
     e = new_value - cur_value
     p = np.exp(-(e/T))
     rng_uni = np.random.uniform()
@@ -47,10 +47,11 @@ def accept_solution(cur_value, new_value):
 def simulated_anealing(n_cities, u, T): # u = wsp. chłodzeia, T = temperatura
 
     dist_values = generator(n_cities)
-    n_iter = 10000
+    n_iter = 100000
     val_arr = np.zeros(n_iter)
     best_val_arr = np.zeros(n_iter)
-    print("dane wejściowe", dist_values)
+    t_arr = np.zeros(n_iter)
+    #print("dane wejściowe", dist_values)
 
     # generowanie pierwszego rozwiązania
     solution = []
@@ -66,7 +67,8 @@ def simulated_anealing(n_cities, u, T): # u = wsp. chłodzeia, T = temperatura
     best_value = copy(cur_value)
     val_arr[i] = cur_value
     best_val_arr[i] = best_value
-    while cnt <= len(solution) and i < n_iter - 1:
+    t_arr[i] = T
+    while T > 0.01 and i < n_iter - 1:
         new_solution = next_solution(solution)
         new_value = objective_fun(dist_values, solution)
         if new_value < cur_value:
@@ -77,7 +79,7 @@ def simulated_anealing(n_cities, u, T): # u = wsp. chłodzeia, T = temperatura
                 best_value = copy(cur_value)
                 
         else:
-            accept = accept_solution(cur_value, new_value)
+            accept = accept_solution(cur_value, new_value, T)
             if accept == True:
                 solution = new_solution
                 cur_value = new_value
@@ -89,20 +91,29 @@ def simulated_anealing(n_cities, u, T): # u = wsp. chłodzeia, T = temperatura
         i += 1
         val_arr[i] = cur_value
         best_val_arr[i] = best_value
+        t_arr[i] = T
 
 
     i += 1
-    print("rozwiązanie ", solution)
-    print("długość ścieżki: ", best_value)
-    return solution, best_value, val_arr, best_val_arr, i
+    return solution, best_value, val_arr, best_val_arr, t_arr, i
     
 
-
-solution, best_value, val_arr, best_val_arr, i =simulated_anealing(500, 0.9, 10)
+# analiza pojedynczego uruchomienia
+"""
+solution, best_value, val_arr, best_val_arr, t_arr, i = simulated_anealing(50, 0.99, 540)
 
 fig, ax = plt.subplots()
 ax.plot(np.linspace(1, i, i), best_val_arr[:i], color='blue', label="najlepsze rozwiązanie")
 ax.plot(np.linspace(1, i, i), val_arr[:i], color='red', label="aktualne rozwiązanie")
 ax.legend()
+plt.xlabel("liczba iteracji")
+plt.ylabel("długość ścieżki")
 plt.show()
 
+
+fig, ax = plt.subplots()
+ax.plot(np.linspace(1, i, i), t_arr[:i], color='blue', label="najlepsze rozwiązanie")
+plt.xlabel("liczba iteracji")
+plt.ylabel("temperatura")
+plt.show()
+"""
