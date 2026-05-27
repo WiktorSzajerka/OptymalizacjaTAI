@@ -21,8 +21,8 @@ def objective_fun(dist_matrix, solution):   # funkcja celu
 
 def next_solution(solution):    # generowanie kolejnego rozwiązania z pośród sąsiadów
     new_sol = solution[:]
-    i = np.random.randint(low=1, high=len(solution))
-    j = np.random.randint(low=1, high=len(solution))
+    i = np.random.randint(low=0, high=len(solution))
+    j = np.random.randint(low=0, high=len(solution))
     if i == j:
         j = j - np.random.randint(low=1, high=len(solution) - 1)
     new_sol[i], new_sol[j] = new_sol[j], new_sol[i]

@@ -123,7 +123,7 @@ summary_df.to_csv("experiment_summary.csv", index=False)
 print("Saved experiment_summary.csv")
 
 
-# ── quick comparison plot (best value vs n_cities) ───────────────────────────
+# quick comparison plot (best value vs n_cities)
 fig, ax = plt.subplots(figsize=(10, 5))
 for label, arr, color in [
     ("RS",   rs_list_val,   "blue"),
